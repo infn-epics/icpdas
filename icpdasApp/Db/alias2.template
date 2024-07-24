@@ -1,0 +1,13 @@
+# alias2.template
+# Template to add a two alias (e.g. 'set' and 'get' PVs) into the EPICS DB.
+# There's probably countless smarter ways to handle this.
+# francesco.prelz@mi.infn.it - July 17th, 2023
+#
+# substitutions:
+# oset  - Original PV1 name
+# aset  - Alias PV1 name
+# oget  - Original PV1 name
+# aget  - Alias PV1 name
+
+alias("$(oget)", "$(aget)")
+alias("$(oset)", "$(aset)")

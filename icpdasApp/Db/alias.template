@@ -1,0 +1,10 @@
+# alias.template
+# Template to add a single alias into the EPICS DB.
+# There's probably countless smarter ways to handle this.
+# francesco.prelz@mi.infn.it - July 17th, 2023
+#
+# substitutions:
+# orig    - Original PV name
+# alias   - Alias PV name
+
+alias("$(orig)", "$(alias)")

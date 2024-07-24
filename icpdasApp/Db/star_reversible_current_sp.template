@@ -1,0 +1,24 @@
+#
+# File: star_reversible_current_sp.template
+# These records allow to set a relative (positive/negative) current
+# value for the STAR magnet supplies controlled by a STFC/Daresbury power
+# reversal unit. These are processed by the PRRamp.st sequencer that
+# in turn drives the (absolute) current setting of the power supplies
+# and the Power Reversal direction, making sure that the PR is operated
+# only when the current is zero (the operation fails otherwise).
+#
+# Comments&Complaints --> francesco.prelz@mi.infn.it 14-Nov-2023
+#
+
+record(ao, "$(DEVICE):CURRENT_SP")
+{
+    field(DESC, "Current setpoint")
+    field(DTYP, "Soft channel")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(RANGE=5)")
+    field(HOPR, "$(RANGE=5)")
+    field(DRVL, "-$(RANGE=5)")
+    field(DRVH, "$(RANGE=5)")
+}
+
