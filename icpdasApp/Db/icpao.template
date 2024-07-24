@@ -1,0 +1,15 @@
+
+record(ao, "$(P):$(R):AO$(REGOFF)")
+{
+    field(DESC, "Analog Output")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(SCAN, "I/O Intr")
+}
+record(ai, "$(P):$(R):AO$(REGOFF)_RB")
+{
+    field(DESC, "Analog Output")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORTRB) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(SCAN, "I/O Intr")
+}

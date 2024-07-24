@@ -4,12 +4,9 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS BELOW HERE
 
 # Install databases, templates & substitutions like this
-DB += circle.db
-DB += dbExample1.db
-DB += dbExample2.db
-DB += icpdasVersion.db
-DB += dbSubExample.db
-DB += user.substitutions
+DB += icp7215.db
+DB += icp7026.db 
+
 
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>

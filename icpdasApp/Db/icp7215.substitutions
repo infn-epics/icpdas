@@ -1,0 +1,15 @@
+file "icprtd.template"
+{
+    pattern {P,     R,   REGOFF, PORT,   }
+            {$(P),  $(R),     0,         $(PORT)}
+            {$(P),  $(R),     1,         $(PORT)}
+            {$(P),  $(R),     2,         $(PORT)}
+            {$(P),  $(R),     3,         $(PORT)}
+            {$(P),  $(R),     4,         $(PORT)}
+            {$(P),  $(R),     5,         $(PORT)}
+            {$(P),  $(R),     6,         $(PORT)}
+
+
+}
+
+  

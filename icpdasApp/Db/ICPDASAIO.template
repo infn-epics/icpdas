@@ -1,10 +1,12 @@
-# ICPDASAIO.template
-# Template database for the ICPDAS PET-7H16 Relays in use at STAR.
+# icp6chai2chao2chdi2chdo.template
+# Template database for the ICPDAS ET-7026
 # francesco.prelz@mi.infn.it - INFN Milano
 #
 # substitutions:
 # device    - device name
-# read_port - modbus 'read aio' port
+# read_port - modbus 'read ai' port
+# write_port - modbus 'write ao' port
+
 #   do_port - modbus 'modbus single coil write' port
 #   di_port - modbus 'modbus single coil read' port
 #   ai_port - modbus 'push register' port - for setting the scale
@@ -23,216 +25,66 @@
 ################################################################################
 # AIO setup
 #
-record(bo, "$(device):AIO_RANGE_SP")
+# record(bo, "$(device):AIO_RANGE_SP")
+# {
+#     field(DESC, "Set input range: 0 is 5V, 1 is 10 V")
+#     field(DTYP, "asynInt32")
+#     field(OUT,  "@asyn($(ai_port) 0 $(TIMEOUT=1000))INT16")
+#     field(ZNAM, "5V")
+#     field(ONAM, "10V")
+#     field(PINI, "YES")
+#     field(VAL, "1")
+# }
+
+record(ai, "$(P):$(R):AI$(REGOFF)_RB")
 {
-    field(DESC, "Set input range: 0 is 5V, 1 is 10 V")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(ai_port) 0 $(TIMEOUT=1000))INT16")
-    field(ZNAM, "5V")
-    field(ONAM, "10V")
-    field(PINI, "YES")
-    field(VAL, "1")
+    field(DESC, "Analog Input")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(read_port) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P):$(R):VOLTS$(REGOFF)_RB")
+}
+record(ao, "$(P):$(R):AO$(REGOFF)")
+{
+    field(DESC, "Analog Output")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(aowrite) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(SCAN, "I/O Intr")
+}
+record(ao, "$(P):$(R):AO$(REGOFF)_RB")
+{
+    field(DESC, "Analog Output")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(aoread) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(SCAN, "I/O Intr")
 }
 
-record(ai, "$(device):AIO0_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 0 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO0_VOLTS")
-}
-record(ai, "$(device):AIO1_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 1 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO1_VOLTS")
-}
-record(ai, "$(device):AIO2_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 2 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO2_VOLTS")
-}
-record(ai, "$(device):AIO3_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 3 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO3_VOLTS")
-}
-record(ai, "$(device):AIO4_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 4 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO4_VOLTS")
-}
-record(ai, "$(device):AIO5_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 5 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO5_VOLTS")
-}
-record(ai, "$(device):AIO6_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 6 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO6_VOLTS")
-}
-record(ai, "$(device):AIO7_VAL")
-{
-    field(DESC, "Analog Input")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) 7 $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(device):AIO7_VOLTS")
-}
 
-record(calc, "$(device):AIO0_VOLTS")
+record(calc, "$(P):$(R):VOLTS$(REGOFF)_RB")
 {
     field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO0_VAL")
-    field(CALC, "A / 32768. * $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO1_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO1_VAL")
-    field(CALC, "A / 32768. * $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO2_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO2_VAL")
-    field(CALC, "A / 32768. *  $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO3_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(CALC, "A / 32768. *  $(maxscale=10.)")
-    field(INPA, "$(device):AIO3_VAL")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO4_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO4_VAL")
-    field(CALC, "A / 32768. * $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO5_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO5_VAL")
-    field(CALC, "A / 32768. * $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO6_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO6_VAL")
-    field(CALC, "A / 32768. * $(maxscale=10.)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
-record(calc, "$(device):AIO7_VOLTS")
-{
-    field(DESC, "Analog Input - Volts")
-    field(INPA, "$(device):AIO7_VAL")
+    field(INPA, "$(P):$(R):AI$(REGOFF)_RB")
     field(CALC, "A / 32768. * $(maxscale=10.)")
     field(PREC, "3")
     field(EGU, "V")
 }
 
-record(bo, "$(device):DO0")
+record(bo, "$(P):$(R):DO$(REGOFF)")
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(do_port) 0 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-record(bo, "$(device):DO1")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(do_port) 1 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-record(bo, "$(device):DO2")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(do_port) 2 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-record(bo, "$(device):DO3")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(do_port) 3 1)")
+    field(OUT,  "@asynMask($(do_port) $(REGOFF) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")
 }
 
-record(bi, "$(device):DI0")
+
+record(bi, "$(P):$(R):DI$(REGOFF)")
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(di_port) 0 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "I/O Intr")
-}
-record(bi, "$(device):DI1")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(di_port) 1 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "I/O Intr")
-}
-record(bi, "$(device):DI2")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(di_port) 2 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "I/O Intr")
-}
-record(bi, "$(device):DI3")
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(di_port) 3 1)")
+    field(INP,  "@asynMask($(di_port) $(REGOFF) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "I/O Intr")
