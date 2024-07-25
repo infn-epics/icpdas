@@ -31,7 +31,7 @@ record(scalcout, "$(P):$(R):$(WHAT)version_string") {
     field(INPA, "$(P):$(R):$(WHAT)version_major")
     field(INPB, "$(P):$(R):$(WHAT)version_minor")
     field(INPC, "$(P):$(R):$(WHAT)version_patch")
-    field(CALC, "sprintf(\"%d.%d.%d\",A,B,C)")
+    field(CALC, "printf(\"%d.%d.%d\",A,B,C)")
     field(OUT, "$(P):$(R):$(WHAT)version PP")
 }
 
