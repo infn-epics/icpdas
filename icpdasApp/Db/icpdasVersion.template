@@ -5,38 +5,4 @@ record(ai, "$(P):$(R):$(WHAT)version_raw") {
     field(INP,  "@asynMask($(PORT) $(REGOFFSET) 16)")  
     field(PREC, "0")
 }
-record(calc, "$(P):$(R):$(WHAT)version_major") {
-    field(DESC, "Major Version")
-    field(INPA, "$(P):$(R):$(WHAT)version_raw")
-    field(CALC, "A>>8")
-    field(PREC, "0")
-}
 
-record(calc, "$(P):$(R):$(WHAT)version_minor") {
-    field(DESC, "Minor Version")
-    field(INPA, "$(P):$(R):$(WHAT)version_raw")
-    field(CALC, "(A&0x0F0)>>4")
-    field(PREC, "0")
-}
-
-record(calc, "$(P):$(R):$(WHAT)version_patch") {
-    field(DESC, "Patch Version")
-    field(INPA, "$(P):$(R):$(WHAT)version_raw")
-    field(CALC, "A&0x00F")
-    field(PREC, "0")
-}
-
-record(scalcout, "$(P):$(R):$(WHAT)version_string") {
-    field(DESC, "Formatted Version String")
-    field(INPA, "$(P):$(R):$(WHAT)version_major")
-    field(INPB, "$(P):$(R):$(WHAT)version_minor")
-    field(INPC, "$(P):$(R):$(WHAT)version_patch")
-    field(CALC, "printf(\"%d.%d.%d\",A,B,C)")
-    field(OUT, "$(P):$(R):$(WHAT)version PP")
-}
-
-record(stringin, "$(P):$(R):$(WHAT)version") {
-    field(DESC, "Version String")
-    field(INP, "$(P):$(R):$(WHAT)version_string")
-    field(PINI, "YES")
-}
