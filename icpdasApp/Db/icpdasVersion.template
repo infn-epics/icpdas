@@ -4,5 +4,7 @@ record(ai, "$(P):$(R):$(WHAT)version_raw") {
 
     field(INP,  "@asynMask($(PORT) $(REGOFFSET) 16)")  
     field(PREC, "0")
+    field(SCAN, "I/O Intr")
+
 }
 
