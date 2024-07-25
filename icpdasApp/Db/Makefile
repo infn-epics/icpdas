@@ -5,7 +5,8 @@ include $(TOP)/configure/CONFIG
 
 # Install databases, templates & substitutions like this
 DB += icp7215.db
-DB += icp7026.db 
+DB += icp7026.db
+DB += icprtdsensor.template
 
 
 # If <anyname>.db template is not named <anyname>*.template add
