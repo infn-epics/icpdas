@@ -1,6 +1,6 @@
 record(ai, "$(P):$(R):$(WHAT)version_raw") {
     field(DESC, "Raw 16-bit Version Value")
-    field(INP,  "@asynMask($(PORT) $(REGOFF) 16")  
+    field(INP,  "@asynMask($(PORT) $(REGOFFSET) 16")  
     field(PREC, "0")
 }
 record(calc, "$(P):$(R):$(WHAT)version_major") {

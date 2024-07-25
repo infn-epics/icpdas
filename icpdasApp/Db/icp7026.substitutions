@@ -1,6 +1,6 @@
 file "icpai.template"
 {
-    pattern {P,     R,   REGOFF, PORT,   }
+    pattern {P,     R,   REGOFFSET, PORT,   }
             {$(P),  $(R),     0,         $(AIPORT)}
             {$(P),  $(R),     1,         $(AIPORT)}
             {$(P),  $(R),     2,         $(AIPORT)}
@@ -14,21 +14,21 @@ file "icpai.template"
 
 file "icpao.template"
 {
-    pattern {P,     R,   REGOFF, PORT,   PORTRB}
+    pattern {P,     R,   REGOFFSET, PORT,   PORTRB}
             {$(P),  $(R),     0,         $(AOPORT), $(AOPORTRB)  }
             {$(P),  $(R),     1,         $(AOPORT), $(AOPORTRB)  }
 }
 
 file "icpdi.template"
 {
-    pattern {P,     R,   REGOFF, PORT,   }
+    pattern {P,     R,   REGOFFSET, PORT,   }
             {$(P),  $(R),     0,         $(AIPORT)}
             {$(P),  $(R),     1,         $(AIPORT)}
 }
 
 file "icpdo.template"
 {
-    pattern {P,     R,   REGOFF, PORT,   PORTRB}
+    pattern {P,     R,   REGOFFSET, PORT,   PORTRB}
             {$(P),  $(R),     0,         $(AOPORT), $(AOPORTRB)  }
             {$(P),  $(R),     1,         $(AOPORT), $(AOPORTRB)  }
 }   

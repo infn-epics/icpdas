@@ -1,90 +1,53 @@
-# icp6chai2chao2chdi2chdo.template
-# Template database for the ICPDAS ET-7026
-# francesco.prelz@mi.infn.it - INFN Milano
-#
-# substitutions:
-# device    - device name
-# read_port - modbus 'read ai' port
-# write_port - modbus 'write ao' port
 
-#   do_port - modbus 'modbus single coil write' port
-#   di_port - modbus 'modbus single coil read' port
-#   ai_port - modbus 'push register' port - for setting the scale
-#   maxscale - maximum volt scale (5 or 10 V - default is 10V)
-#
-################################################################################
-# Extract from startup script to create modbus ports
-#
-# drvAsynIPPortConfigure ("AIO1_IP", "icpiaio1.star.unical.it:502", 0, 0, 1)
-# modbusInterposeConfig  ("AIO1_IP", 0, 255, 0)
-# drvModbusAsynConfigure ("AIO1_READ", "AIO1_IP", 1, 4, 0,  8, 0, 1000, "ICPDAS")
-# drvModbusAsynConfigure ("AIO1_DO", "AIO1_IP", 1, 5, 0,  4, 0, 1000, "ICPDAS")
-# drvModbusAsynConfigure ("AIO1_DI", "AIO1_IP", 1, 2, 0,  4, 0, 1000, "ICPDAS")
-# drvModbusAsynConfigure ("AIO1_AI", "AIO1_IP", 1, 6, 32, 1, 0, 1000, "ICPDAS")
-#
-################################################################################
-# AIO setup
-#
-# record(bo, "$(device):AIO_RANGE_SP")
-# {
-#     field(DESC, "Set input range: 0 is 5V, 1 is 10 V")
-#     field(DTYP, "asynInt32")
-#     field(OUT,  "@asyn($(ai_port) 0 $(TIMEOUT=1000))INT16")
-#     field(ZNAM, "5V")
-#     field(ONAM, "10V")
-#     field(PINI, "YES")
-#     field(VAL, "1")
-# }
-
-record(ai, "$(P):$(R):AI$(REGOFF)_RB")
+record(ai, "$(P):$(R):AI$(REGOFFSET)_RB")
 {
     field(DESC, "Analog Input")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(read_port) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asyn($(read_port) $(REGOFFSET) $(TIMEOUT=1000))INT16")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P):$(R):VOLTS$(REGOFF)_RB")
+    field(FLNK, "$(P):$(R):VOLTS$(REGOFFSET)_RB")
 }
-record(ao, "$(P):$(R):AO$(REGOFF)")
+record(ao, "$(P):$(R):AO$(REGOFFSET)")
 {
     field(DESC, "Analog Output")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(aowrite) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asyn($(aowrite) $(REGOFFSET) $(TIMEOUT=1000))INT16")
     field(SCAN, "I/O Intr")
 }
-record(ao, "$(P):$(R):AO$(REGOFF)_RB")
+record(ao, "$(P):$(R):AO$(REGOFFSET)_RB")
 {
     field(DESC, "Analog Output")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(aoread) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asyn($(aoread) $(REGOFFSET) $(TIMEOUT=1000))INT16")
     field(SCAN, "I/O Intr")
 }
 
 
-record(calc, "$(P):$(R):VOLTS$(REGOFF)_RB")
+record(calc, "$(P):$(R):VOLTS$(REGOFFSET)_RB")
 {
     field(DESC, "Analog Input - Volts")
-    field(INPA, "$(P):$(R):AI$(REGOFF)_RB")
+    field(INPA, "$(P):$(R):AI$(REGOFFSET)_RB")
     field(CALC, "A / 32768. * $(maxscale=10.)")
     field(PREC, "3")
     field(EGU, "V")
 }
 
-record(bo, "$(P):$(R):DO$(REGOFF)")
+record(bo, "$(P):$(R):DO$(REGOFFSET)")
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(do_port) $(REGOFF) 1)")
+    field(OUT,  "@asynMask($(do_port) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")
 }
 
 
-record(bi, "$(P):$(R):DI$(REGOFF)")
+record(bi, "$(P):$(R):DI$(REGOFFSET)")
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(di_port) $(REGOFF) 1)")
+    field(INP,  "@asynMask($(di_port) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "I/O Intr")

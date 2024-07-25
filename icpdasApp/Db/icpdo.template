@@ -1,9 +1,9 @@
 
-record(bo, "$(P):$(R):DO$(REGOFF)")
+record(bo, "$(P):$(R):DO$(REGOFFSET)")
 {
     field(DESC, "DO state")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(PORT) $(REGOFF) 1)")
+    field(OUT,  "@asynMask($(PORT) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")

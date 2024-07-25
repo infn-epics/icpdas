@@ -1,10 +1,10 @@
 
 
-record(bi, "$(P):$(R):DI$(REGOFF)_RB")
+record(bi, "$(P):$(R):DI$(REGOFFSET)_RB")
 {
     field(DESC, "DI state")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT) $(REGOFF) 1)")
+    field(INP,  "@asynMask($(PORT) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "I/O Intr")

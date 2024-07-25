@@ -1,18 +1,18 @@
 
-record(ai, "$(P):$(R):AI$(REGOFF)_RB")
+record(ai, "$(P):$(R):AI$(REGOFFSET)_RB")
 {
     field(DESC, "Analog Input")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(PORT) $(REGOFF) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asyn($(PORT) $(REGOFFSET) $(TIMEOUT=1000))INT16")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P):$(R):VOLTS$(REGOFF)_RB")
+    field(FLNK, "$(P):$(R):VOLTS$(REGOFFSET)_RB")
 }
 
 
-record(calc, "$(P):$(R):VOLTS$(REGOFF)_RB")
+record(calc, "$(P):$(R):VOLTS$(REGOFFSET)_RB")
 {
     field(DESC, "Analog Input - Volts")
-    field(INPA, "$(P):$(R):AI$(REGOFF)_RB")
+    field(INPA, "$(P):$(R):AI$(REGOFFSET)_RB")
     field(CALC, "A / 32768. * $(maxscale=10.)")
     field(PREC, "3")
     field(EGU, "V")
