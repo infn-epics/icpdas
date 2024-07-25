@@ -3,21 +3,21 @@ record(ai, "$(P):$(R):$(ID)_RB")
 {
     field(DESC, "AI$(REGOFFSET)")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(PORT) $(REGOFFSET) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asynMask($(PORT) $(REGOFFSET) 16)INT16")
     field(SCAN, "I/O Intr")
 }
 record(ai, "$(P):$(R):$(ID)_MAX_RB")
 {
     field(DESC, "AI$(REGOFFSET)")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(PORTMAX) $(REGOFFSET) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asynMask($(PORTMAX) $(REGOFFSET) 16)INT16")
     field(SCAN, "I/O Intr")
 }
 record(ai, "$(P):$(R):$(ID)_MIN_RB")
 {
     field(DESC, "AI$(REGOFFSET)")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(PORTMIN) $(REGOFFSET) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asynMask($(PORTMIN) $(REGOFFSET) 16)INT16")
     field(SCAN, "I/O Intr")
 }
 
