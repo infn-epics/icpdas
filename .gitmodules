@@ -1,0 +1,3 @@
+[submodule "opi"]
+	path = opi
+	url = https://baltig.infn.it/infn-epics/icpdas-opi.git
