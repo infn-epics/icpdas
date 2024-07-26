@@ -6,7 +6,7 @@ record(bo, "$(P):$(R):$(ID)")
     field(OUT,  "@asynMask($(PORT) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
-    field(SCAN, "Passive")
+    field(SCAN, "I/O Intr")
 }
 
 record(bi, "$(P):$(R):$(ID)_RB")
@@ -16,7 +16,7 @@ record(bi, "$(P):$(R):$(ID)_RB")
     field(INP,  "@asynMask($(PORT) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
-    field(SCAN, "Passive")
+    field(SCAN, "I/O Intr")
 }
 
 
