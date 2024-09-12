@@ -3,10 +3,11 @@
 # francesco.prelz@mi.infn.it - 
 #
 # substitutions:
-# device   - device name
+# P  
+# R
 # get_port - modbus 'read coils' port
 # set_port - modbus 'force single coil' port
-#
+# NUM   - index of relay 
 ################################################################################
 # Extract from startup script to create modbus ports
 #
@@ -20,153 +21,20 @@
 ################################################################################
 # relay control
 #
-record(bi, "$(device):RELAY0_RB") 
+record(bi, "$(P):$(R):RLY$(NUM)_RB") 
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 0 1)")
+    field(INP,  "@asynMask($(get_port) $(NUM) 1)")
     field(SCAN, "I/O Intr")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
 }
-record(bo, "$(device):RELAY0_SP") 
+record(bo, "$(P):$(R):RLY$(NUM)_SP") 
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 0 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY1_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 1 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY1_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 1 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY2_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 2 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY2_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 2 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY3_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 3 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY3_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 3 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY4_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 4 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY4_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 4 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY5_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 5 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY5_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 5 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY6_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 6 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY6_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 6 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "Passive")
-}
-
-record(bi, "$(device):RELAY7_RB") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) 7 1)")
-    field(SCAN, "I/O Intr")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-}
-record(bo, "$(device):RELAY7_SP") 
-{
-    field(DESC, "On/Off")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) 7 1)")
+    field(OUT,  "@asynMask($(set_port) $(NUM) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")

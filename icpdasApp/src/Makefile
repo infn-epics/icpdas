@@ -44,12 +44,14 @@ DBD += icpdas.dbd
 
 # icpdas.dbd will include these files:
 icpdas_DBD += base.dbd
-icpdas_DBD += xxxSupport.dbd
-icpdas_DBD += dbSubExample.dbd
-icpdas_DBD += devicpdasVersion.dbd
-icpdas_DBD += icpdasHello.dbd
-icpdas_DBD += initTrace.dbd
-
+#icpdas_DBD += xxxSupport.dbd
+#icpdas_DBD += dbSubExample.dbd
+#icpdas_DBD += devicpdasVersion.dbd
+#icpdas_DBD += icpdasHello.dbd
+icpdas_DBD += modbusSupport.dbd
+icpdas_DBD += asyn.dbd
+icpdas_DBD += drvAsynIPPort.dbd
+#icpdas_DBD += initTrace.dbd
 # icpdas_registerRecordDeviceDriver.cpp derives from icpdas.dbd
 icpdas_SRCS += icpdas_registerRecordDeviceDriver.cpp
 
@@ -58,8 +60,8 @@ icpdas_SRCS_DEFAULT += icpdasMain.cpp
 icpdas_SRCS_vxWorks += -nil-
 
 # Link in the code from our support library
-icpdas_LIBS += icpdasSupport
-
+icpdas_LIBS += asyn
+icpdas_LIBS += modbus
 # To build SNL programs, SNCSEQ must be defined
 # in the <top>/configure/RELEASE file
 ifneq ($(SNCSEQ),)
