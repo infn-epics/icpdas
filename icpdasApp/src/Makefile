@@ -48,23 +48,6 @@ icpdas_LIBS += asyn
 icpdas_LIBS += modbus
 # To build SNL programs, SNCSEQ must be defined
 # in the <top>/configure/RELEASE file
-ifneq ($(SNCSEQ),)
-    # Build sncExample into icpdasSupport
-    sncExample_SNCFLAGS += +r
-    icpdas_DBD += sncExample.dbd
-    # A .stt sequence program is *not* pre-processed:
-    icpdasSupport_SRCS += sncExample.stt
-    icpdasSupport_LIBS += seq pv
-    icpdas_LIBS += seq pv
-
-    # Build sncProgram as a standalone program
-    PROD_HOST += sncProgram
-    sncProgram_SNCFLAGS += +m
-    # A .st sequence program *is* pre-processed:
-    sncProgram_SRCS += sncProgram.st
-    sncProgram_LIBS += seq pv
-    sncProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
-endif
 
 # Link QSRV (pvAccess Server) if available
 ifdef EPICS_QSRV_MAJOR_VERSION
