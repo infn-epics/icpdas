@@ -7,26 +7,16 @@ include $(TOP)/configure/CONFIG
 # Use typed rset structure (see 3.16.1 release notes)
 USR_CPPFLAGS += -DUSE_TYPED_RSET
 
-# xxxRecord.h will be created from xxxRecord.dbd
-DBDINC += xxxRecord
-
-# Install xxxSupport.dbd into <top>/dbd
-DBD += xxxSupport.dbd
-
 # Build an IOC support library
-LIBRARY_IOC += icpdasSupport
-
-# Compile and add code to the support library
-icpdasSupport_SRCS += xxxRecord.c
-icpdasSupport_SRCS += devXxxSoft.c
+# LIBRARY_IOC += icpdasSupport
 
 # Link locally-provided code into the support library,
 # rather than directly into the IOC application, that
 # causes problems on Windows DLL builds
-icpdasSupport_SRCS += dbSubExample.c
-icpdasSupport_SRCS += devicpdasVersion.c
-icpdasSupport_SRCS += icpdasHello.c
-icpdasSupport_SRCS += initTrace.c
+#icpdasSupport_SRCS += dbSubExample.c
+#icpdasSupport_SRCS += devicpdasVersion.c
+#icpdasSupport_SRCS += icpdasHello.c
+#icpdasSupport_SRCS += initTrace.c
 
 icpdasSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
@@ -44,15 +34,9 @@ DBD += icpdas.dbd
 
 # icpdas.dbd will include these files:
 icpdas_DBD += base.dbd
-#icpdas_DBD += xxxSupport.dbd
-#icpdas_DBD += dbSubExample.dbd
-#icpdas_DBD += devicpdasVersion.dbd
-#icpdas_DBD += icpdasHello.dbd
 icpdas_DBD += modbusSupport.dbd
 icpdas_DBD += asyn.dbd
 icpdas_DBD += drvAsynIPPort.dbd
-#icpdas_DBD += initTrace.dbd
-# icpdas_registerRecordDeviceDriver.cpp derives from icpdas.dbd
 icpdas_SRCS += icpdas_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point where needed
