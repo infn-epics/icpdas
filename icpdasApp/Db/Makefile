@@ -7,6 +7,9 @@ include $(TOP)/configure/CONFIG
 DB += icp7215.db
 DB += icp7026.db
 DB += icp7267.db
+DB += icp7060.db
+DB += icp7250.db
+
 DB += icprtdsensor.template
 
 
