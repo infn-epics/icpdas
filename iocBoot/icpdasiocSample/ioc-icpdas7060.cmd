@@ -15,7 +15,7 @@ drvModbusAsynConfigure ("ICP_set_port", "ICPDAS_IP", 1, 5, 0,  6, 0, 1000, "ICPD
 
 drvModbusAsynConfigure("ICP_DI", "ICPDAS_IP",    1, 2,  0, 6,   0,1000, "ICPDAS7060")
 #drvModbusAsynConfigure("ICP_DISet", "ICPDAS_IP", 1, 5,  151, 6,   0,1000, "ICPDAS7060")
-drvModbusAsynConfigure("ICP_DICNT", "ICPDAS_IP", 1, 4,  16,12, 0, 1000, "ICPDAS7060")
+drvModbusAsynConfigure("ICP_DICNT", "ICPDAS_IP", 1, 4,  16,12, 5, 1000, "ICPDAS7060")
 
 
 

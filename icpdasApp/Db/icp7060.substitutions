@@ -11,13 +11,13 @@ file "ICPDASRly.template"
 
 file "icpdi.template"
 {
-    pattern {P,     R,     ID, REGOFFSET, PORT,PORTCNT   }
-            {$(P),  $(R), "DI0",    0,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI1",    1,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI2",    2,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI3",    3,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI4",    4,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI5",    5,         $(DIPORT),$(CNTPORT)}
+    pattern {P,     R,     ID, REGOFFSET,REGOFFSET2X, PORT,PORTCNT   }
+            {$(P),  $(R), "DI0",    0,     0,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI1",    1,     2,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI2",    2,     4,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI3",    3,     6,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI4",    4,     8,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI5",    5,    10,    $(DIPORT),$(CNTPORT)}
 }
 
 #file "icpdo.template"
