@@ -18,9 +18,9 @@ file "icpao.template"
 
 file "icpdi.template"
 {
-    pattern {P,     R,   ID, REGOFFSET, PORT,PORTCNT   }
-            {$(P),  $(R), "DI0",    0,         $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI1",    1,         $(DIPORT),$(CNTPORT)}
+    pattern {P,     R,   ID, REGOFFSET,REGOFFSET2X, PORT,PORTCNT   }
+            {$(P),  $(R), "DI0",    0,  0,     $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), "DI1",    1,  2,     $(DIPORT),$(CNTPORT)}
 }
 
 file "icpdo.template"
