@@ -10,7 +10,7 @@ variables:
 #before_script:
   # Update pip to the latest version
   
-test-gen:
+build_support:
   stage: compile
   script:
     - |
