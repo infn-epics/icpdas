@@ -1,0 +1,25 @@
+image: baltig.infn.it:4567/epics-containers/infn-epics-ioc:devel
+
+stages:
+  - compile
+
+variables:
+  # Enable recursive cloning of submodules
+  GIT_SUBMODULE_STRATEGY: recursive
+
+#before_script:
+  # Update pip to the latest version
+  
+test-gen:
+  stage: compile
+  script:
+    - |
+      echo "EPICS_BASE=/epics/epics-base" > configure/RELEASE.local
+      echo "SUPPORT=/epics/support" >> configure/RELEASE.local
+      make
+    - tar czvf support.tar.gz db/ opi/
+  artifacts:
+    paths:
+      - support.tar.gz
+    expire_in: 1 month
+
