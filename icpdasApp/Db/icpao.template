@@ -3,13 +3,13 @@ record(ao, "$(P):$(R):$(ID)")
 {
     field(DESC, "AO$(REGOFFSET)")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn($(PORT) $(REGOFFSET) $(TIMEOUT=1000))INT16")
-    field(SCAN, "I/O Intr")
+    field(OUT,  "@asyn($(PORT) $(REGOFFSET))INT16")
+    field(SCAN, "Passive")
 }
 record(ai, "$(P):$(R):$(ID)_RB")
 {
     field(DESC, "AO$(REGOFFSET)RB")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn($(PORT) $(REGOFFSET) $(TIMEOUT=1000))INT16")
+    field(INP,  "@asyn($(PORT) $(REGOFFSET))INT16")
     field(SCAN, "I/O Intr")
 }
