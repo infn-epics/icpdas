@@ -22,13 +22,13 @@ record(calc, "$(P):$(R):VOLTS$(REGOFFSET)_RB")
     field(PREC, "3")
     field(EGU, "V")
 }
-record(ao, "$(P):$(R):VOLTS$(REGOFFSET)")
+record(calcout, "$(P):$(R):VOLTS$(REGOFFSET)")
 {
-    field(DESC, "Set Analog Output $(REGOFFSET) in Volts")
-    field(DTYP, "soft")
-    field(EGU, "V")
-    field(PREC, "3")
-    field(OUT, "$(P):$(R):$(ID)")
-    field(CALC, "A * 32768. / $(maxscale=10.)")
-    field(FLNK, "$(P):$(R):$(ID)")  # Link to update the raw ao record
+    field(DESC, "Convert Volts to Raw Integer and Write")
+    field(INPA, "$(P):$(R):VOLTS$(REGOFFSET).VAL NPP")  # Use the current value as input
+    field(CALC, "A * 32768. / $(maxscale=10.)")         # Convert volts to raw integer
+    field(OUT, "$(P):$(R):$(ID) PP")  
+    field(OOPT, "Every Time")                           # Always output
+    field(PREC, "3")                                    # Precision for display
+    field(EGU, "V")   
 }
