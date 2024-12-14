@@ -11,9 +11,9 @@ file "icpai.template"
 
 file "icpao.template"
 {
-    pattern {P,     R,   ID, REGOFFSET, PORT}
-            {$(P),  $(R),  "AO0",   0,         $(AOPORT) }
-            {$(P),  $(R),  "AO1",   1,         $(AOPORT) }
+    pattern {P,     R,   ID, REGOFFSET, WPORT, RPORT, maxscale}
+            {$(P),  $(R),  "AO0",   0,         $(WAOPORT),$(RAOPORT),10 }
+            {$(P),  $(R),  "AO1",   1,         $(WAOPORT),$(RAOPORT),10 }
 }
 
 file "icpdi.template"
