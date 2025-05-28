@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-07-26 14:55:59 by andreamichelotti-->
+<!--Saved on 2025-05-23 17:35:38 by riccardoesposito-->
 <display version="2.0.0">
   <name>Display</name>
   <width>550</width>
@@ -150,5 +150,13 @@
       <width>210</width>
       <height>50</height>
     </widget>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>Combo Box</name>
+    <pv_name>$(P):$(R):AI0_MIN</pv_name>
+    <x>320</x>
+    <y>440</y>
+    <width>250</width>
+    <height>50</height>
   </widget>
 </display>
