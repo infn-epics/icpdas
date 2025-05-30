@@ -1,10 +1,9 @@
-record(mbbo, "$(P):$(R):$(ID)_OUT")
+record(mbbo, "$(P):$(R):$(ID)_RANGE_OUT")
 {
-    
-    field(DTYP, "asynInt32")
-    field(OUT, "@asyn($(PORTMAX) $(REGOFFSET) 0xFFFF)")
-    field(DESC, "OUT $(ID)")
-    field(SCAN, "I/O Intr")
+    field(DESC, "Set AO Range $(ID)")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT, "@asyn($(PORTMAX),40459,0xFFFF)")
+
     field(ZRVL, "0x30")
     field(ZRST, "0~20 mA")
     field(ONVL, "0x31")

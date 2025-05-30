@@ -1,4 +1,4 @@
-record(mbbo, "$(P):$(R):$(ID)_IN")
+record(mbbo, "$(P):$(R):$(ID)_RANGE_IN")
 {
     field(DTYP, "asynInt32")
     field(OUT, "@asyn($(PORTMIN) $(REGOFFSET) 1000)")

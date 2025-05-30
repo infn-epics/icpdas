@@ -10,4 +10,9 @@ file "icpai7026.template"
     {$(P),  $(R), "AI5", 5, $(AIPORT),$(PORTMIN)}
 
 }
-
+file "icpao7026.template"
+{
+    pattern {P, R, ID, REGOFFSET,PORT, PORTMAX}
+    {$(P),  $(R), "AO0", 0, $(AOPORT),$(PORTMAX)}
+    {$(P),  $(R), "AO1", 1, $(AOPORT),$(PORTMAX)}
+}
