@@ -26,3 +26,4 @@ dbLoadRecords("$(TOP)/db/icp7026.db","P=ICPDAS, R=Test7026, get_port=ICP_get_por
 
 
 iocInit()
+dbl 

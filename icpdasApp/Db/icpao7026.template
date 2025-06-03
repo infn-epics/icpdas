@@ -2,7 +2,7 @@ record(mbbo, "$(P):$(R):$(ID)_RANGE_OUT")
 {
     field(DESC, "Set AO Range $(ID)")
     field(DTYP, "asynUInt32Digital")
-    field(OUT, "@asyn($(PORTMAX),40459,0xFFFF)")
+    field(OUT, "@asyn($(PORTMAX) $(REGOFFSET) 1000)")
 
     field(ZRVL, "0x30")
     field(ZRST, "0~20 mA")
