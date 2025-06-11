@@ -41,3 +41,23 @@ record(calcout, "$(P):$(R):$(ID):VOLT_SET")
     field(CALC, "A * 32768. / $(maxscale=10.)")        # Convert volts to raw integer
     field(OUT, "$(P):$(R):$(ID).VAL PP")               # Write to raw ao record
 }
+
+record(mbbo, "$(P):$(R):$(ID)_RANGE_OUT")
+{
+    field(DESC, "Set AO Range $(ID)")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(PORTRANGEOUT) $(REGOFFSET) 1000)")
+
+    field(ZRVL, "0x30")
+    field(ZRST, "0~20 mA")
+    field(ONVL, "0x31")
+    field(ONST, "4~20 mA")
+    field(TWVL, "0x32")
+    field(TWST, "0~10 V")
+    field(THVL, "0x33")
+    field(THST, "+/-10 V")
+    field(FRVL, "0x34")
+    field(FRST, "0~5 V")
+    field(FVVL, "0x35")
+    field(FVST, "+/-5 V")
+}
