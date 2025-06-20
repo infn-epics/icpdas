@@ -1,14 +1,14 @@
 file "ICPDASRly.template"
 {
-    pattern { P,R, NUM,   get_port,   set_port  }
-            {$(P), $(R), 0,    $(get_port),    $(set_port)    }
-            {$(P), $(R), 1,    $(get_port),    $(set_port)    }
-            {$(P), $(R), 2,    $(get_port),    $(set_port)   }
-            {$(P), $(R), 3,    $(get_port),    $(set_port)     }
-            {$(P), $(R), 4,    $(get_port),    $(set_port)     }
-            {$(P), $(R), 5,    $(get_port),    $(set_port)     }
-            {$(P), $(R), 6,    $(get_port),    $(set_port)     }
-            {$(P), $(R), 7,    $(get_port),    $(set_port)     }
+    pattern { P,R, ID,REGOFFSET,   get_port,   set_port  }
+            {$(P), $(R),"RLY0", 0,    $(get_port),    $(set_port)    }
+            {$(P), $(R),"RLY1", 1,    $(get_port),    $(set_port)    }
+            {$(P), $(R),"RLY2", 2,    $(get_port),    $(set_port)   }
+            {$(P), $(R),"RLY3", 3,    $(get_port),    $(set_port)     }
+            {$(P), $(R),"RLY4", 4,    $(get_port),    $(set_port)     }
+            {$(P), $(R),"RLY5", 5,    $(get_port),    $(set_port)     }
+            {$(P), $(R),"RLY6", 6,    $(get_port),    $(set_port)     }
+            {$(P), $(R),"RLY7", 7,    $(get_port),    $(set_port)     }
             
 }
 

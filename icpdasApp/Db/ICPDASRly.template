@@ -21,20 +21,20 @@
 ################################################################################
 # relay control
 #
-record(bi, "$(P):$(R):RLY$(NUM)_RB") 
+record(bi, "$(P):$(R):$(ID)_RB") 
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(get_port) $(NUM) 1)")
+    field(INP,  "@asynMask($(get_port) $(REGOFFSET) 1)")
     field(SCAN, "I/O Intr")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
 }
-record(bo, "$(P):$(R):RLY$(NUM)_SP") 
+record(bo, "$(P):$(R):RLY$(ID)_SP") 
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(set_port) $(NUM) 1)")
+    field(OUT,  "@asynMask($(set_port) $(REGOFFSET) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")
