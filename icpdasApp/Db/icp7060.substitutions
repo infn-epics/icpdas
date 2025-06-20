@@ -1,4 +1,4 @@
-file "ICPDASRly.template"
+file "icprly.template"
 {
     pattern { P,R, ID,REGOFFSET,   get_port,   set_port  }
             {$(P), $(R), "RLY0", 0,    $(get_port),    $(set_port)    }
