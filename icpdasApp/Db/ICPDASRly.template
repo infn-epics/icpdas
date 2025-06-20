@@ -30,7 +30,7 @@ record(bi, "$(P):$(R):$(ID)_RB")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
 }
-record(bo, "$(P):$(R):RLY$(ID)_SP") 
+record(bo, "$(P):$(R):$(ID)_SP") 
 {
     field(DESC, "On/Off")
     field(DTYP, "asynUInt32Digital")
