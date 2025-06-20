@@ -1,15 +1,24 @@
 
-record(bo, "$(P):$(R):$(ID)")
-{
-    field(DESC, "DO$(REGOFFSET)")
-    field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(DOPORT) $(REGOFFSET) 1)")
-    field(ONAM, "ON")
-    field(ZNAM, "OFF")
-    field(SCAN, "I/O Intr")
-    field(TPRO, "1")
-}
+#record(bo, "$(P):$(R):$(ID)")
+#{
+#    field(DESC, "DO$(REGOFFSET)")
+#    field(DTYP, "asynUInt32Digital")
+#    field(OUT,  "@asynMask($(DOPORT) $(REGOFFSET) 1)")
+#    field(ONAM, "ON")
+#    field(ZNAM, "OFF")
+#    field(SCAN, "I/O Intr")
+#    field(TPRO, "1")
+#}
 
+record(bo, "$(P):$(R):Def_$(ID)")
+{
+    field(DESC, "Comando Deflettore $(ID)")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT, "@asynMask($(DOPORT) $(REGOFFSET) 1000 0x01)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "Passive")
+}
 
 record(bi, "$(P):$(R):$(ID)_RB")
 {
