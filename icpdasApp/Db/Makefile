@@ -13,6 +13,12 @@ DB += icp7226.db
 
 
 DB += icprtdsensor.template
+DB += icpdi.template
+DB += icpdo.template
+DB += icprly.template
+DB += icpai.template
+DB += icpao.template
+DB += icprtd.template
 
 
 # If <anyname>.db template is not named <anyname>*.template add
