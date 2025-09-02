@@ -1,4 +1,4 @@
-record(ai, "$(P):$(R):$(ID)_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "RTD Sensor")
@@ -16,10 +16,10 @@ record(ai, "$(P):$(R):$(ID)_RB")
     field(EGUL, "$(EGUL=-100)")
     field(SCAN, "$(SCAN=I/O Intr)")
     field(EGU, "$(EGU=degC)")
-    field(FLNK, "$(P):$(R):$(ID)_Status") 
+    field(FLNK, "$(P):$(R):$(ID)_seqcalc") 
 }
 
-record(ai, "$(P):$(R):$(ID)_HWMIN_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_HWMIN_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "Temp HW Min")
@@ -39,7 +39,7 @@ record(ai, "$(P):$(R):$(ID)_HWMIN_RB")
     field(EGU, "$(EGU=degC)")
 }
 
-record(ai, "$(P):$(R):$(ID)_HWMAX_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_HWMAX_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "Temp HW Max")
@@ -59,44 +59,44 @@ record(ai, "$(P):$(R):$(ID)_HWMAX_RB")
     field(EGU, "$(EGU=degC)")
 }
 
-record(seq, "$(P):$(R):$(ID)_Status")
+record(seq, "$(P):$(R):$(ID)_seqcalc")
 {
-    field(DOL1, "$(P):$(R):$(ID)_RB")  
-    field(LNK1, "$(P):$(R):$(ID)_AVG")  
-    field(DOL2, "$(P):$(R):$(ID)_RB")  
-    field(LNK2, "$(P):$(R):$(ID)_MAX")  
-    field(DOL3, "$(P):$(R):$(ID)_RB")  
-    field(LNK3, "$(P):$(R):$(ID)_MIN")
+    field(DOL1, "$(P):$(R):$(ID):TEMP_RB")  
+    field(LNK1, "$(P):$(R):$(ID):TEMP_AVG")  
+    field(DOL2, "$(P):$(R):$(ID):TEMP_RB")  
+    field(LNK2, "$(P):$(R):$(ID):TEMP_MAX")  
+    field(DOL3, "$(P):$(R):$(ID):TEMP_RB")  
+    field(LNK3, "$(P):$(R):$(ID):TEMP_MIN")
 }
 
-record(compress, "$(P):$(R):$(ID)_AVG")
+record(compress, "$(P):$(R):$(ID):TEMP_AVG")
 {
     field(DESC, "Average Temperature Calculation")
     field(ALG, "3")
     field(N, "$(NELM=60)")
-    field(INP, "$(P):$(R):$(ID)_RB")
+    field(INP, "$(P):$(R):$(ID):TEMP_RB")
     field(EGU, "$(EGU=degC)")
     field(PREC, "3")
-    field(FLNK, "$(P):$(R):$(ID)_MAX") 
+    field(FLNK, "$(P):$(R):$(ID):TEMP_MAX") 
 }
 
-record(compress, "$(P):$(R):$(ID)_MAX")
+record(compress, "$(P):$(R):$(ID):TEMP_MAX")
 {
     field(DESC, "Max Temperature Calculation")
     field(ALG, "1")
     field(N, "$(NELM=60)")
-    field(INP, "$(P):$(R):$(ID)_RB")
+    field(INP, "$(P):$(R):$(ID):TEMP_RB")
     field(EGU, "$(EGU=degC)")
     field(PREC, "3")
-    field(FLNK, "$(P):$(R):$(ID)_MIN")
+    field(FLNK, "$(P):$(R):$(ID):TEMP_MIN")
 }
 
-record(compress, "$(P):$(R):$(ID)_MIN")
+record(compress, "$(P):$(R):$(ID):TEMP_MIN")
 {
     field(DESC, "Min Temperature Calculation")
     field(ALG, "0")
     field(N, "$(NELM=60)")
-    field(INP, "$(P):$(R):$(ID)_RB")
+    field(INP, "$(P):$(R):$(ID):TEMP_RB")
     field(EGU, "$(EGU=degC)")
     field(PREC, "3")
 }

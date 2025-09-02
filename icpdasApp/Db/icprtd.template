@@ -1,4 +1,4 @@
-record(ai, "$(P):$(R):$(ID)_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "RTD$(ID)")
@@ -6,7 +6,7 @@ record(ai, "$(P):$(R):$(ID)_RB")
     field(SCAN, "I/O Intr")
 }
 
-record(ai, "$(P):$(R):$(ID)_MAX_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_MAX_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "RTD $(ID) Max histo")
@@ -14,7 +14,7 @@ record(ai, "$(P):$(R):$(ID)_MAX_RB")
     field(SCAN, "I/O Intr")
 
 }
-record(ai, "$(P):$(R):$(ID)_MIN_RB")
+record(ai, "$(P):$(R):$(ID):TEMP_MIN_RB")
 {
     field(DTYP, "asynInt32")
     field(DESC, "RTD$(ID) Min histo")
