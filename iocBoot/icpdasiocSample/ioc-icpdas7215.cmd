@@ -6,8 +6,6 @@
 dbLoadDatabase "../../dbd/icpdas.dbd"
 icpdas_registerRecordDeviceDriver(pdbbase)
 
-#epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/agilentXgs600App/protocol")
-
 
 
 #drvAsynIPPortConfigure ("MOXA1","192.168.190.55:4002",0,0,0)
@@ -22,8 +20,10 @@ drvModbusAsynConfigure("PORT_MAX", "ICPDAS_IP", 1, 4, 236, 7, 0, 1000, "ICPDAS72
 #read once or epics events
 drvModbusAsynConfigure("PORT_INFO", "ICPDAS_IP", 1, 4, 350, 4, 0,10000, "ICPDAS7215")
 
+## holding registers
+drvModbusAsynConfigure("PORT_TYPE", "ICPDAS_IP", 1, 6, 427, 7, 0, 1000, "ICPDAS7215")
 
-dbLoadRecords("$(TOP)/db/icp7215.db","P=ICPDAS,R=Test7267,PORT=PORT,PORTMAX=PORT_MAX,  PORTMIN=PORT_MIN,PORTINFO=PORT_INFO")
+dbLoadRecords("$(TOP)/db/icp7215.db","P=ICPDAS,R=Test7267,PORT=PORT,PORTMAX=PORT_MAX,  PORTMIN=PORT_MIN,PORTINFO=PORT_INFO, PORTTYPE=PORT_TYPE")
 dbLoadRecords("$(TOP)/db/icprtdsensor.template","P=ICPDAS,R=Test7267,PORT=PORT,PORTMAX=PORT_MAX, ID=CICCIO, REGOFFSET=0,PORTMIN=PORT_MIN,PORTINFO=PORT_INFO")
 
 

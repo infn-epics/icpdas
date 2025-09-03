@@ -36,7 +36,7 @@ DBD += icpdas.dbd
 icpdas_DBD += base.dbd
 icpdas_DBD += modbusSupport.dbd
 icpdas_DBD += asyn.dbd
-icpdas_DBD += drvAsynIPPort.dbd
+icpdas_DBD += drvAsynIPPort.dbd sensorType.dbd
 icpdas_SRCS += icpdas_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point where needed
