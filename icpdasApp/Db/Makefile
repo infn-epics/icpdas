@@ -12,7 +12,7 @@ DB += icp7250.db
 DB += icp7226.db
 
 
-DB += icprtdsensor.template
+DB += icpstats.template
 DB += icpdi.template
 DB += icpdo.template
 DB += icprly.template

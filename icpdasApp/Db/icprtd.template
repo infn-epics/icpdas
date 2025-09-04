@@ -16,51 +16,65 @@ record(ai, "$(P):$(R):$(ID):TEMP_RB")
     field(EGU, "$(EGU=degC)")
 }
 
-record(longout, "$(P)$(R):$(ID):SENSOR_TYPE") {
+record(longout, "$(P):$(R):$(ID):SENSOR_TYPE_RAW_SP") {
     field(DESC, "Write raw sensor type")
     field(DTYP, "asynInt32")     # or your driver
     field(OUT, "@asynMask($(PORTTYPE) $(REGOFFSET) 16)INT16")
-    field(FLNK, "$(P)$(R):$(ID):SENSOR_TYPE_RB")
+    field(FLNK, "$(P):$(R):$(ID):SENSOR_TYPE_RAW_RB")
 }
-record(longin, "$(P)$(R):$(ID):SENSOR_TYPE_RB") {
+record(longin, "$(P):$(R):$(ID):SENSOR_TYPE_RAW_RB") {
     field(DESC, "Read raw sensor type")
     field(DTYP, "asynInt32")
-    field(INP, "@asynMask($(PORTTYPE) $(REGOFFSET) 16)INT16")
+    field(INP, "@asynMask($(PORTTYPE) $(REGOFFSET) 16)UINT16")
     field(SCAN, "10 second")
+    field(FLNK, "$(P):$(R):$(ID):PT100_SENSOR_TYPE")
+
 }
 
-# record(stringin, "$(P)$(R):$(ID):SENSOR_TYPE_STR") {
-#     field(DESC, "Human-readable sensor type")
-#     field(VAL,  "unknown")
-# }
-# record(calcout, "$(P)$(R):SENSOR_TYPE_MAP1") {
-#     field(CALC, "A==0x20?'Pt100,-100~100°C':\
-# A==0x21?'Pt100,0~100°C':\
-# A==0x22?'Pt100,0~200°C':\
-# A==0x23?'Pt100,0~600°C':\
-# A==0x24?'Pt100,-100~100°C':\
-# A==0x25?'Pt100,0~100°C':\
-# A==0x26?'Pt100,0~200°C':\
-# A==0x27?'Pt100,0~600°C':'unknown'")
-#     field(INPA, "$(P)$(R):SENSOR_TYPE_RBV CP")
-#     field(OUT, "$(P)$(R):SENSOR_TYPE_STR")
-# }
+record(mbbi, "$(P):$(R):$(ID):PT100_SENSOR_TYPE") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(P):$(R):$(ID):SENSOR_TYPE_RAW_RB CP")
+    field(ZRVL, "32")
+    field(ZRST, "-100-100C")
+    field(ONVL, "33")
+    field(ONST, "0~100C")
+    field(TWVL, "34")
+    field(TWST, "0-200C")
+    field(THVL, "35")
+    field(THST, "0-600C")
+    field(FRVL, "36")
+    field(FRST, "-100-100C")
+    field(FVVL, "37")
+    field(FVST, "0-100C")
+    field(SXVL, "38")
+    field(SXST, "0-200C")
+    field(SVVL, "39")
+    field(SVST, "0-600C")
+    field(FLNK, "$(P):$(R):$(ID):sensor_pt100_map")
 
-# record(calcout, "$(P)$(R):SENSOR_TYPE_MAP2") {
+}
+record(calcout, "$(P):$(R):$(ID):sensor_pt100_map") {
+    field(CALC, "A==0x27?0.01831:A==0x20?0.003051:A==0x22?0.006103:0.003051")
+    field(INPA, "$(P):$(R):$(ID):SENSOR_TYPE_RAW_RB CP")
+    field(OUT, "$(P):$(R):$(ID):CONV_FACTOR_SP")
+    field(FLNK, "$(P):$(R):$(ID):CONV_FACTOR_SP")
+}
+
+# record(calcout, "$(P):$(R):SENSOR_TYPE_MAP2") {
 #     field(CALC, "A==0x28?'Ni120,-80~100°C':\
 # A==0x29?'Ni120,0~100°C':\
 # A==0x2A?'Pt1000,-200~600°C':\
 # A==0x2B?'Cu100,-20~150°C':\
 # A==0x2C?'Cu100,0~200°C':\
 # A==0x2D?'Cu1000,-20~150°C':\
-# A==0x2E?'Pt100,-200~200°C':\
-# A==0x2F?'Pt100,-200~200°C':\
-# A==0x80?'Pt100,-200~600°C':\
-# A==0x81?'Pt100,-200~600°C':\
+# A==0x2E?'-200~200°C':\
+# A==0x2F?'-200~200°C':\
+# A==0x80?'-200~600°C':\
+# A==0x81?'-200~600°C':\
 # A==0x82?'Cu50,-50~150°C':\
 # A==0x83?'Ni100,-60~180°C':'unknown'")
-#     field(INPA, "$(P)$(R):SENSOR_TYPE_RBV CP")
-#     field(OUT, "$(P)$(R):SENSOR_TYPE_STR")
+#     field(INPA, "$(P):$(R):SENSOR_TYPE_RBV CP")
+#     field(OUT, "$(P):$(R):SENSOR_TYPE_STR")
 # }
 record(ai, "$(P):$(R):$(ID):TEMP_MAX_RB")
 {
@@ -95,5 +109,39 @@ record(ai, "$(P):$(R):$(ID):TEMP_MIN_RB")
     field(AOFF, "$(AOFF=0)")
     field(SCAN, "$(SCAN=I/O Intr)")
     field(EGU, "$(EGU=degC)")
+}
+
+# Record to hold the conversion factor
+record(ao, "$(P):$(R):$(ID):CONV_FACTOR_SP") {
+    field(DESC, "Conversion factor for RTD")
+    field(VAL, "$(ASLO=0.00305185)")
+    field(PREC, "8")
+    field(FLNK, "$(P):$(R):$(ID):set_aslo")
+}
+
+# Update ASLO field of TEMP_RB when CONV_FACTOR changes
+record(calcout, "$(P):$(R):$(ID):set_aslo") {
+    field(DESC, "Set ASLO from CONV_FACTOR")
+    field(INPA, "$(P):$(R):$(ID):CONV_FACTOR_SP CP")
+    field(CALC, "A")
+    field(OUT, "$(P):$(R):$(ID):TEMP_RB.ASLO PP")
+    field(FLNK, "$(P):$(R):$(ID):set_aslo_max")
+
+}
+
+# Optionally, repeat for TEMP_MAX_RB and TEMP_MIN_RB
+record(calcout, "$(P):$(R):$(ID):set_aslo_max") {
+    field(DESC, "Set ASLO for TEMP_MAX_RB")
+    field(INPA, "$(P):$(R):$(ID):CONV_FACTOR_SP CP")
+    field(CALC, "A")
+    field(OUT, "$(P):$(R):$(ID):TEMP_MAX_RB.ASLO PP")
+    field(FLNK, "$(P):$(R):$(ID):set_aslo_min")
+
+}
+record(calcout, "$(P):$(R):$(ID):set_aslo_min") {
+    field(DESC, "Set ASLO for TEMP_MIN_RB")
+    field(INPA, "$(P):$(R):$(ID):CONV_FACTOR_SP CP")
+    field(CALC, "A")
+    field(OUT, "$(P):$(R):$(ID):TEMP_MIN_RB.ASLO PP")
 }
 
