@@ -19,6 +19,8 @@ DB += icprly.template
 DB += icpai.template
 DB += icpao.template
 DB += icprtd.template
+DB += icpdasVersion.template
+
 
 
 # If <anyname>.db template is not named <anyname>*.template add
