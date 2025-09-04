@@ -1,13 +1,13 @@
 file "icprtd.template"
 {
-    pattern {P,     R,   ID, REGOFFSET, CONV,CONVOFF,PORT,   PORTMIN, PORTMAX,PORTTYPE}
-            {$(P),  $(R), "RTD0",    0,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD1",    1,   1,  0,   $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD2",    2,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD3",    3,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD4",    4,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD5",    5,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
-            {$(P),  $(R), "RTD6",    6,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+    pattern {P,     R,   ID, CONV,CONVOFF,PORT,   PORTMIN, PORTMAX,PORTTYPE}
+            {$(P),  $(R),   0,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     1,   1,  0,   $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     2,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     3,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     4,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     5,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
+            {$(P),  $(R),     6,   1,  0,    $(PORT),   $(PORTMIN), $(PORTMAX),$(PORTTYPE)}
 
 }
 
