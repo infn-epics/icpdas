@@ -5,6 +5,8 @@ record(ao, "$(P):$(R):AO$(ID)_SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(WPORT) $(ID) $(TIMEOUT=1000))INT16")
     field(SCAN, "Passive")
+    field(FLNK, "$(P):$(R):AO$(ID)_RB")   
+
 }
 record(ai, "$(P):$(R):AO$(ID)_RB")
 {
