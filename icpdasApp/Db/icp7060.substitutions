@@ -1,23 +1,23 @@
 file "icprly.template"
 {
-    pattern { P,R, ID,REGOFFSET,   get_port,   set_port  }
-            {$(P), $(R), "RLY0", 0,    $(get_port),    $(set_port)    }
-            {$(P), $(R), "RLY1", 1,    $(get_port),    $(set_port)    }
-            {$(P), $(R), "RLY2", 2,    $(get_port),    $(set_port)   }
-            {$(P), $(R), "RLY3", 3,    $(get_port),    $(set_port)     }
-            {$(P), $(R), "RLY4", 4,    $(get_port),    $(set_port)     }
-            {$(P), $(R), "RLY5", 5,    $(get_port),    $(set_port)     }
+    pattern { P,R, ID,   get_port,   set_port  }
+            {$(P), $(R),  0,    $(get_port),    $(set_port)    }
+            {$(P), $(R), 1,    $(get_port),    $(set_port)    }
+            {$(P), $(R),  2,    $(get_port),    $(set_port)   }
+            {$(P), $(R),  3,    $(get_port),    $(set_port)     }
+            {$(P), $(R),  4,    $(get_port),    $(set_port)     }
+            {$(P), $(R),  5,    $(get_port),    $(set_port)     }
 }
 
 file "icpdi.template"
 {
-    pattern {P,     R,     ID, REGOFFSET,REGOFFSET2X, PORT,PORTCNT   }
-            {$(P),  $(R), "DI0",    0,     0,    $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI1",    1,     2,    $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI2",    2,     4,    $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI3",    3,     6,    $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI4",    4,     8,    $(DIPORT),$(CNTPORT)}
-            {$(P),  $(R), "DI5",    5,    10,    $(DIPORT),$(CNTPORT)}
+    pattern {P,     R,     ID, IDX2, PORT,PORTCNT   }
+            {$(P),  $(R),   0,     0,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R),  1,     2,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R),   2,     4,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R), 3,     6,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R),  4,     8,    $(DIPORT),$(CNTPORT)}
+            {$(P),  $(R),  5,    10,    $(DIPORT),$(CNTPORT)}
 }
 
 #file "icpdo.template"
@@ -31,12 +31,9 @@ file "icpdi.template"
 #    {$(P),  $(R), "DI5Set",    5,         $(DISetPORT)}
 #}
 
-
 file "icpdasVersion.template"
 {
-    pattern {P,     R,   WHAT, REGOFFSET,PORT}
-            {$(P),  $(R), "OS",    0,  $(PORT)}
-            {$(P),  $(R), "FW",    1,   $(PORT)}
-            {$(P),  $(R), "IO",    2,   $(PORT)}
+    pattern {P,     R,PORT}
+            {$(P),  $(R),    $(PORT)}
             
 }

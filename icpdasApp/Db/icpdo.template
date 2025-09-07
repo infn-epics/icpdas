@@ -1,25 +1,12 @@
 
-record(bo, "$(P):$(R):$(ID)")
+record(bo, "$(P):$(R):DO$(ID)_SP")
 {
-    field(DESC, "DO$(REGOFFSET)")
+    field(DESC, "$(DESC=DO$(ID) Set point)")
     field(DTYP, "asynUInt32Digital")
-    field(OUT,  "@asynMask($(PORT) $(REGOFFSET) 1)")
+    field(OUT,  "@asynMask($(PORT) $(ID) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")
 }
-
-## it's not updated
-# record(bi, "$(P):$(R):$(ID)_RB")
-# {
-#     field(DESC, "DO$(REGOFFSET) RB")
-#     field(DTYP, "asynUInt32Digital")
-#     field(INP,  "@asynMask($(PORT) $(REGOFFSET) 1)")
-#     field(ONAM, "ON")
-#     field(ZNAM, "OFF")
-#     field(PINI,"YES")
-#     field(VAL,"0")
-#     field(SCAN, "I/O Intr")
-# }
 
 

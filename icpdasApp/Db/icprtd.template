@@ -1,7 +1,7 @@
 record(ai, "$(P):$(R):RTD$(ID):TEMP_RB")
 {
     field(DTYP, "asynInt32")
-    field(DESC, "RTD Sensor")
+    field(DESC, "$(DESC=RTD $(ID) RB)")
     field(INP, "@asynMask($(PORT) $(ID) 16)INT16")
     field(HOPR, "$(HOPR=100)")
     field(HIHI, "$(HIHI=100)")
@@ -17,13 +17,13 @@ record(ai, "$(P):$(R):RTD$(ID):TEMP_RB")
 }
 
 record(longout, "$(P):$(R):RTD$(ID):SENSOR_TYPE_RAW_SP") {
-    field(DESC, "Write raw sensor type")
+    field(DESC, "PT100 $(ID) raw type id SP")
     field(DTYP, "asynInt32")     # or your driver
     field(OUT, "@asynMask($(PORTTYPE) $(ID) 16)INT16")
     field(FLNK, "$(P):$(R):RTD$(ID):SENSOR_TYPE_RAW_RB")
 }
 record(longin, "$(P):$(R):RTD$(ID):SENSOR_TYPE_RAW_RB") {
-    field(DESC, "Read raw sensor type")
+    field(DESC, "PT100 $(ID) raw type id RB")
     field(DTYP, "asynInt32")
     field(INP, "@asynMask($(PORTTYPE) $(ID) 16)UINT16")
     field(SCAN, "10 second")
@@ -32,7 +32,7 @@ record(longin, "$(P):$(R):RTD$(ID):SENSOR_TYPE_RAW_RB") {
 }
 
 record(mbbi, "$(P):$(R):RTD$(ID):PT100_SENSOR_TYPE") {
-    field(DTYP, "Raw Soft Channel")
+    field(DESC, "PT100 $(ID) type")
     field(INP,  "$(P):$(R):RTD$(ID):SENSOR_TYPE_RAW_RB CP")
     field(ZRVL, "32")
     field(ZRST, "-100-100C")
@@ -79,7 +79,7 @@ record(calcout, "$(P):$(R):RTD$(ID):sensor_pt100_map") {
 record(ai, "$(P):$(R):RTD$(ID):TEMP_MAX_RB")
 {
     field(DTYP, "asynInt32")
-    field(DESC, "RTD $(ID) Max histo")
+    field(DESC, "$(DESC=RLY $(ID) MAX RB)")
     field(INP, "@asynMask($(PORTMAX) $(ID) 16)INT16")
     field(HOPR, "$(HOPR=100)")
     field(HIHI, "$(HIHI=100)")
@@ -96,7 +96,7 @@ record(ai, "$(P):$(R):RTD$(ID):TEMP_MAX_RB")
 record(ai, "$(P):$(R):RTD$(ID):TEMP_MIN_RB")
 {
     field(DTYP, "asynInt32")
-    field(DESC, "RTD$(ID) Min histo")
+    field(DESC, "$(DESC=RLY $(ID) MIN RB)")
     field(INP, "@asynMask($(PORTMIN) $(ID) 16)INT16")
     field(HOPR, "$(HOPR=100)")
     field(HIHI, "$(HIHI=100)")
@@ -113,7 +113,7 @@ record(ai, "$(P):$(R):RTD$(ID):TEMP_MIN_RB")
 
 # Record to hold the conversion factor
 record(ao, "$(P):$(R):RTD$(ID):CONV_FACTOR_SP") {
-    field(DESC, "Conversion factor for RTD")
+    field(DESC, "Conversion factor for RTD $(ID)")
     field(VAL, "$(ASLO=0.00305185)")
     field(PREC, "8")
     field(FLNK, "$(P):$(R):RTD$(ID):set_aslo")

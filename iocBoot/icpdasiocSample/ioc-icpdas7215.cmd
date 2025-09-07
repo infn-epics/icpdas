@@ -28,6 +28,7 @@ dbLoadRecords("$(TOP)/db/icprtd.template","P=ICPDAS,R=Test7267,PORT=PORT,PORTMAX
 
 dbLoadRecords("$(TOP)/db/icpstats.template","P=ICPDAS,R=Test7267, ID=RTD0, REGOFFSET=0,PROP=TEMP,NELM=60")
 
+dbLoadRecords("$(TOP)/db/icpdasVersion.template","P=ICPDAS,R=Test7267, PORT=PORT_INFO")
 
 iocInit()
 

@@ -12,12 +12,9 @@ file "icprly.template"
             
 }
 
-
 file "icpdasVersion.template"
 {
-    pattern {P,     R,   WHAT, REGOFFSET,PORT}
-            {$(P),  $(R), "OS",    0,  $(PORT)}
-            {$(P),  $(R), "FW",    1,   $(PORT)}
-            {$(P),  $(R), "IO",    2,   $(PORT)}
+    pattern {P,     R,PORT}
+            {$(P),  $(R),    $(PORT)}
             
 }
