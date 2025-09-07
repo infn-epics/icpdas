@@ -38,5 +38,6 @@ record(bo, "$(P):$(R):RLY$(ID)_SP")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
     field(SCAN, "Passive")
+    field(FLNK,"$(P):$(R):RLY$(ID)_RB")
 }
 

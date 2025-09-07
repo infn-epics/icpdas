@@ -14,9 +14,9 @@ record(bi, "$(P):$(R):DO$(ID)_RB")
 {
     field(DESC, "$(DESC=DO$(ID) RB)")
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT) $(ID) 1)")
+    field(INP,  "@asynMask($(PORTR) $(ID) 1)")
     field(ONAM, "ON")
     field(ZNAM, "OFF")
-    field(SCAN, "Passive")
+    field(SCAN, "I/O Intr")
 }
 
